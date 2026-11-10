@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <h1>Todo List</h1>
+    <main id="app">
+      <form class="todo-form" onsubmit="validateForm()">
+        <label class="todo-label">Add a task</label>
+        <input required class="todo-input" type="text" />
+        <button class="todo-submit" type="submit">Add to the TODO list</button>
+      </form>
+      <div class="todo-container">
+        <ul class="todo-unordered-list"></ul>
+      </div>
+    </main>
+  </body>
+</html>
