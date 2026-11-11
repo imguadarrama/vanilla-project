@@ -1,7 +1,7 @@
 const todoInput = document.querySelector(".todo-input");
 const todoForm = document.querySelector(".todo-form");
 const todoUnorderedList = document.querySelector(".todo-unordered-list");
-const errorParagraph = document.querySelector("#error-paragraph");
+const errorParagraph = document.querySelector("#todo-error");
 const state = [];
 
 todoForm.addEventListener("submit", (event) => {
@@ -27,15 +27,16 @@ function render(state) {
   todoUnorderedList.replaceChildren();
 
   state.forEach((item) => {
-    const todoList = document.createElement("li");
+    const todoItem = document.createElement("li");
     const deleteButton = document.createElement("button");
 
-    todoList.classList.add("todo-list");
-    todoList.textContent = item.text;
-    todoList.dataset.id = item.id;
+    todoItem.classList.add("todo-list");
+    todoItem.setAttribute("data-id", item.id);
+    todoItem.classList.toggle("done", item.done);
+    todoItem.innerText = item.text;
     deleteButton.textContent = "Delete task";
 
-    todoUnorderedList.appendChild(todoList);
+    todoUnorderedList.appendChild(todoItem);
     todoUnorderedList.appendChild(deleteButton);
   });
 }
