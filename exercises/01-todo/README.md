@@ -6,7 +6,7 @@
 
 - [x] A form with a text input and an "Add" button. Submitting adds a todo (ignore empty or whitespace-only input).
 - [x] Render the list from a `state` array, e.g. `[{ id, text, done }]`.
-- [ ] Clicking a todo toggles `done` (strike-through style).
+- [x] Clicking a todo toggles `done` (strike-through style).
 - [x] Each todo has a delete button.
 - [ ] Show the "X items left" count.
 - [ ] Bonus: filters (All / Active / Done), and persist to `localStorage`.

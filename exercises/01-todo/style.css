@@ -2,7 +2,12 @@
   color: red;
 }
 
-.todo-container {
+.todo-unordered-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.list-container {
   display: flex;
   padding: 1rem;
   background-color: lightblue;
@@ -11,7 +16,11 @@
 }
 
 .label-container {
-  background-color: red;
+  background-color: beige;
   padding: 0 1rem;
   border-radius: 0.3rem;
+}
+
+.done {
+  background-color: lightgreen;
 }

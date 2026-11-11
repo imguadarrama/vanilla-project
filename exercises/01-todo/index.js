@@ -27,28 +27,36 @@ function render(state) {
   todoUnorderedList.replaceChildren();
 
   state.forEach((item) => {
-    const div = document.createElement("div");
     const labelDiv = document.createElement("div");
     const todoItem = document.createElement("li");
+    const listDiv = document.createElement("div");
+    const span = document.createElement("span");
     const label = document.createElement("label");
     const checkBox = document.createElement("input");
     const deleteButton = document.createElement("button");
 
-    div.classList.add("todo-container");
     labelDiv.classList.add("label-container");
+    listDiv.classList.add("list-container");
     label.innerText = "Done";
     checkBox.type = "checkbox";
     todoItem.classList.add("todo-list");
+    labelDiv.classList.toggle("done", item.done);
     todoItem.setAttribute("data-id", item.id);
-    todoItem.classList.toggle("done", item.done);
-    todoItem.innerText = item.text;
+    span.innerText = item.text;
     deleteButton.textContent = "Delete task";
 
-    div.appendChild(todoItem);
     labelDiv.appendChild(label);
     labelDiv.appendChild(checkBox);
-    div.appendChild(labelDiv);
-    div.appendChild(deleteButton);
-    todoUnorderedList.appendChild(div);
+    listDiv.appendChild(span);
+    listDiv.appendChild(labelDiv);
+    listDiv.appendChild(deleteButton);
+
+    todoItem.appendChild(listDiv);
+    todoUnorderedList.appendChild(todoItem);
+    checkBox.checked = item.done;
+    checkBox.addEventListener("change", () => {
+      item.done = checkBox.checked;
+      render(state);
+    });
   });
 }
