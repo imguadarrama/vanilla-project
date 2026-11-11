@@ -1,21 +1,41 @@
 const todoInput = document.querySelector(".todo-input");
 const todoForm = document.querySelector(".todo-form");
 const todoUnorderedList = document.querySelector(".todo-unordered-list");
-const todoContainer = document.querySelector(".todo-container");
-const errorParagraph = document.createElement("p");
+const errorParagraph = document.querySelector("#error-paragraph");
+const state = [];
 
 todoForm.addEventListener("submit", (event) => {
-  if (todoInput.value.trim() !== "") {
-    const todoList = document.createElement("li");
-    event.preventDefault();
-    todoList.classList.add("todo-list-element");
-    todoList.textContent = todoInput.value;
-    todoUnorderedList.append(todoList);
-    errorParagraph.remove();
-  } else {
-    event.preventDefault();
-    errorParagraph.textContent = "You must enter a valid string";
-    errorParagraph.classList.add("error-paragraph");
-    todoContainer.append(errorParagraph);
+  event.preventDefault();
+  const value = todoInput.value.trim();
+  if (value === "") {
+    errorParagraph.hidden = false;
+    todoInput.setAttribute("aria-invalid", "true");
+    return;
   }
+
+  state.push({
+    id: crypto.randomUUID(),
+    text: value,
+    done: false,
+  });
+  todoInput.value = "";
+  errorParagraph.hidden = true;
+  render(state);
 });
+
+function render(state) {
+  todoUnorderedList.replaceChildren();
+
+  state.forEach((item) => {
+    const todoList = document.createElement("li");
+    const deleteButton = document.createElement("button");
+
+    todoList.classList.add("todo-list");
+    todoList.textContent = item.text;
+    todoList.dataset.id = item.id;
+    deleteButton.textContent = "Delete task";
+
+    todoUnorderedList.appendChild(todoList);
+    todoUnorderedList.appendChild(deleteButton);
+  });
+}

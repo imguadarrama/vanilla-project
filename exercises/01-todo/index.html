@@ -10,14 +10,15 @@
   <body>
     <h1>Todo List</h1>
     <main id="app">
-      <form class="todo-form" onsubmit="validateForm()">
-        <label class="todo-label">Add a task</label>
-        <input required class="todo-input" type="text" />
+      <form class="todo-form">
+        <label for="add-task" class="todo-label">Add a task</label>
+        <input id="add-task" class="todo-input" type="text" />
+        <p id="error-paragraph" class="error" hidden>
+          You must enter a valid text
+        </p>
         <button class="todo-submit" type="submit">Add to the TODO list</button>
       </form>
-      <div class="todo-container">
-        <ul class="todo-unordered-list"></ul>
-      </div>
+      <ul class="todo-unordered-list"></ul>
     </main>
   </body>
 </html>
