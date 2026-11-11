@@ -27,16 +27,28 @@ function render(state) {
   todoUnorderedList.replaceChildren();
 
   state.forEach((item) => {
+    const div = document.createElement("div");
+    const labelDiv = document.createElement("div");
     const todoItem = document.createElement("li");
+    const label = document.createElement("label");
+    const checkBox = document.createElement("input");
     const deleteButton = document.createElement("button");
 
+    div.classList.add("todo-container");
+    labelDiv.classList.add("label-container");
+    label.innerText = "Done";
+    checkBox.type = "checkbox";
     todoItem.classList.add("todo-list");
     todoItem.setAttribute("data-id", item.id);
     todoItem.classList.toggle("done", item.done);
     todoItem.innerText = item.text;
     deleteButton.textContent = "Delete task";
 
-    todoUnorderedList.appendChild(todoItem);
-    todoUnorderedList.appendChild(deleteButton);
+    div.appendChild(todoItem);
+    labelDiv.appendChild(label);
+    labelDiv.appendChild(checkBox);
+    div.appendChild(labelDiv);
+    div.appendChild(deleteButton);
+    todoUnorderedList.appendChild(div);
   });
 }
